@@ -8,7 +8,12 @@ get '/' do
 end
 
 post '/' do
-  text_from_user = params[:user_text]
+  @analyzed_text = TextAnalyzer.new(params[:user_text])
+  @returnVal = @analyzed_text.most_used_letter
+  @most_used_letter = @returnVal[0]
+  @num_times = @returnVal[1]
+
+
   erb :results
 end
 
